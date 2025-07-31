@@ -1,8 +1,11 @@
-[gd_scene load_steps=16 format=4 uid="uid://cb6565fir474p"]
+[gd_scene load_steps=19 format=4 uid="uid://cb6565fir474p"]
 
 [ext_resource type="PackedScene" uid="uid://bj2idof27hjbo" path="res://scenes/player.tscn" id="1_j5px3"]
 [ext_resource type="PackedScene" uid="uid://js7egp1ompb4" path="res://scenes/platform_ice.tscn" id="1_sqa0i"]
+[ext_resource type="FontFile" uid="uid://sb74pod4cxxs" path="res://assets/fonts/PixelOperator8.ttf" id="2_5sfjl"]
 [ext_resource type="Texture2D" uid="uid://dgijv5binvfcx" path="res://assets/sprites/world_tileset.png" id="2_twpsu"]
+[ext_resource type="FontFile" uid="uid://dv3j7pud1hhxa" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="3_3hfy5"]
+[ext_resource type="Script" uid="uid://cpnyn014j77mm" path="res://scripts/coin_counter.gd" id="3_7pvxh"]
 [ext_resource type="PackedScene" uid="uid://chvo4oehowtqp" path="res://scenes/platform_green.tscn" id="3_lrqlo"]
 [ext_resource type="PackedScene" uid="uid://b3pxa0h00h75w" path="res://scenes/coin.tscn" id="5_jh1ax"]
 [ext_resource type="PackedScene" uid="uid://5fo2mu8syfji" path="res://scenes/killzone.tscn" id="6_j287u"]
@@ -312,6 +315,21 @@ texture = ExtResource("2_twpsu")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_lrqlo")
 
+[sub_resource type="Animation" id="Animation_jh1ax"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(224, 5)]
+}
+
 [sub_resource type="Animation" id="Animation_sqa0i"]
 resource_name = "move"
 length = 1.5
@@ -327,21 +345,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(224, 5), Vector2(336, 4)]
-}
-
-[sub_resource type="Animation" id="Animation_jh1ax"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(224, 5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kycxp"]
@@ -364,6 +367,41 @@ tile_set = SubResource("TileSet_kycxp")
 tile_map_data = PackedByteArray("AAD//wAAAQAAAAAAAAAAAAAAAQAAAAAAAAD//wEAAQAAAAEAAAD//wIAAQAAAAEAAAD//wMAAQAAAAEAAAD//wQAAQABAAAAAAAAAAQAAQAAAAEAAAAAAAMAAQAAAAEAAAAAAAIAAQABAAEAAAAAAAEAAQAAAAEAAAD+/wIAAQAAAAAAAAD+/wMAAQAAAAEAAAD+/wQAAQABAAEAAAABAAEAAQAAAAAAAAABAAIAAQAAAAEAAAABAAMAAQAAAAEAAAABAAQAAQAAAAEAAAAFAAEAAQAGAAAAAAAEAAEAAQAGAAAAAAAFAAIAAQAGAAEAAAAEAAIAAQAGAAEAAAAFAAMAAQAIAAEAAAAEAAMAAQAGAAEAAAAFAAQAAQAGAAEAAAAEAAQAAQAGAAEAAAD9/wIAAQAAAAAAAAD9/wMAAQAAAAEAAAD9/wQAAQAAAAEAAAD7/wEAAQAHAAEAAAD6/wEAAQAHAAEAAAD5/wEAAQAHAAEAAAD5/wAAAQAHAAEAAAD4/wAAAQAHAAAAAAD3/wAAAQAHAAAAAAD3/wEAAQAGAAIAAAD4/wEAAQAGAAIAAAD4/wIAAQAGAAIAAAD3/wIAAQAGAAIAAAD5/wIAAQAIAAAAAAD6/wIAAQAGAAEAAAD7/wIAAQAGAAEAAAD7/wMAAQAIAAAAAAD6/wMAAQAGAAEAAAD6/wQAAQAIAAAAAAD5/wQAAQAGAAEAAAD7/wQAAQAGAAEAAAD5/wMAAQAGAAEAAAD9/wEAAQAAAAUAAAD9/wAAAQAAAAQAAAD9////AQAAAAQAAAD9//7/AQAAAAMAAAD4////AQAHAAUAAAAFAAAAAQAAAAgAAAD3/wMAAQAGAAIAAAD3/wQAAQAGAAIAAAD4/wQAAQAGAAIAAAD4/wMAAQAAAAIAAAACAAEAAQAJAAAAAAADAAEAAQALAAAAAAADAPv/AQAAAAAAAAADAPz/AQAAAAEAAAAEAPr/AQAAAAAAAAAEAPv/AQAAAAEAAAAEAPz/AQAAAAEAAAAFAPz/AQABAAAAAAADAPr/AQABAAMAAAAFAPn/AQAEAAgAAAAFAPr/AQAAAAAAAAAFAPv/AQAAAAEAAAAGAPv/AQAAAAAAAAAGAPz/AQAAAAEAAAAGAAEAAQAJAAEAAAAHAAEAAQAKAAEAAAAIAAEAAQALAAEAAAAJAAEAAQAGAAAAAAAJAAIAAQAGAAEAAAAJAAMAAQAGAAEAAAAJAAQAAQAGAAEAAAALAAAAAQAGAAAAAAALAAEAAQAGAAEAAAALAAIAAQAGAAEAAAALAAMAAQAGAAEAAAALAAQAAQAGAAEAAAAKAAEAAQAGAAAAAAAKAAIAAQAGAAEAAAAKAAMAAQAGAAEAAAAKAAQAAQAGAAEAAAAMAAAAAQAGAAAAAAAMAAEAAQAGAAEAAAAMAAIAAQAGAAEAAAAMAAMAAQAGAAEAAAAMAAQAAQAGAAEAAAAHAPz/AQAAAAAAAAAIAP3/AQAAAAAAAAAJAP3/AQAAAAAAAAAGAP3/AQAAAAEAAAAHAP3/AQAAAAEAAAAHAP7/AQAAAAEAAAAIAP7/AQAAAAEAAAAJAP7/AQAAAAEAAAAFAP3/AQABAAAAAAAEAP3/AQABAAAAAAADAP3/AQAAAAEAAAAGAP7/AQAAAAEAAAAJAPz/AQADAAgAAAAJAPv/AQADAAcAAAAJAPr/AQADAAYAAAAIAPr/AQACAAYAAAAKAPr/AQAEAAYAAAAIAPv/AQACAAYAAAAKAPv/AQAEAAYAAAAIAPn/AQACAAUAAAAJAPn/AQADAAUAAAAKAPn/AQAEAAUAAAAIAPj/AQACAAQAAAAJAPj/AQADAAQAAAAKAPj/AQAEAAQAAAALAP//AQABAAgAAAAYAAIAAQAEAAAAAAAZAAIAAQAEAAAAAAAaAAIAAQAEAAAAAAAbAAIAAQAEAAAAAAAcAAIAAQAEAAAAAAAYAAMAAQAAAAIAAAAZAAMAAQAAAAIAAAAaAAMAAQAAAAIAAAAbAAMAAQAAAAIAAAAcAAMAAQAAAAIAAAAYAAQAAQABAAIAAAAZAAQAAQABAAIAAAAaAAQAAQABAAIAAAAbAAQAAQABAAIAAAAcAAQAAQABAAIAAAAXAAAAAQAEAAAAAAAXAAEAAQAEAAEAAAAWAAEAAQAEAAEAAAAWAAAAAQAEAAAAAAAXAAIAAQAEAAEAAAAXAAMAAQAFAAIAAAAXAAQAAQAFAAAAAAAWAAQAAQAFAAAAAAAWAAMAAQAFAAAAAAAWAAIAAQAEAAIAAAAeAAEAAQAEAAEAAAAeAAIAAQAEAAEAAAAeAAMAAQAFAAIAAAAeAAQAAQAFAAAAAAAdAAAAAQAEAAAAAAAdAAEAAQAEAAEAAAAdAAIAAQAEAAIAAAAdAAMAAQAFAAAAAAAdAAQAAQAFAAAAAAAeAAAAAQAEAAAAAAA=")
 tile_set = SubResource("TileSet_sqa0i")
 
+[node name="CoinCounter" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_7pvxh")
+
+[node name="Label" type="Label" parent="CoinCounter"]
+offset_left = 342.0
+offset_top = -36.0
+offset_right = 509.0
+offset_bottom = -17.0
+theme_override_fonts/font = ExtResource("3_3hfy5")
+theme_override_font_sizes/font_size = 8
+text = "You collected
+all coins!"
+horizontal_alignment = 1
+
+[node name="Label" type="Node" parent="."]
+
+[node name="Label" type="Label" parent="Label"]
+offset_left = -27.0
+offset_top = -45.0
+offset_right = 39.0
+offset_bottom = -37.0
+theme_override_fonts/font = ExtResource("2_5sfjl")
+theme_override_font_sizes/font_size = 8
+text = "welcome..."
+
+[node name="Label2" type="Label" parent="Label"]
+offset_left = 227.0
+offset_top = -30.0
+offset_right = 307.0
+offset_bottom = -22.0
+theme_override_fonts/font = ExtResource("2_5sfjl")
+theme_override_font_sizes/font_size = 8
+text = "falling hurts"
+
 [node name="Platform2" type="Node" parent="."]
 
 [node name="platform_ice" parent="Platform2" instance=ExtResource("1_sqa0i")]
@@ -382,6 +420,7 @@ libraries = {
 autoplay = "move"
 
 [node name="Coin" type="Node" parent="."]
+unique_name_in_owner = true
 
 [node name="Coin2" parent="Coin" instance=ExtResource("5_jh1ax")]
 position = Vector2(-104, -6)
@@ -394,6 +433,9 @@ position = Vector2(-25, 26)
 
 [node name="Coin5" parent="Coin" instance=ExtResource("5_jh1ax")]
 position = Vector2(270, -3)
+
+[node name="Coin" parent="Coin" instance=ExtResource("5_jh1ax")]
+position = Vector2(476, -6)
 
 [node name="Enemy" type="Node" parent="."]
 
@@ -420,3 +462,5 @@ limit_smoothed = true
 position_smoothing_enabled = true
 
 [node name="Tile Map" type="Node2D" parent="Player"]
+
+[connection signal="ready" from="CoinCounter" to="CoinCounter" method="_on_ready"]
