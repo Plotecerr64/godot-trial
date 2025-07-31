@@ -15,6 +15,10 @@ run/main_scene="uid://cb6565fir474p"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+BGM="res://scenes/bgm.tscn"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"
