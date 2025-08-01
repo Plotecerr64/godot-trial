@@ -1,4 +1,5 @@
 [gd_scene load_steps=20 format=4 uid="uid://cb6565fir474p"]
+[gd_scene load_steps=19 format=4 uid="uid://cb6565fir474p"]
 
 [ext_resource type="PackedScene" uid="uid://bj2idof27hjbo" path="res://scenes/player.tscn" id="1_j5px3"]
 [ext_resource type="PackedScene" uid="uid://js7egp1ompb4" path="res://scenes/platform_ice.tscn" id="1_sqa0i"]
@@ -316,6 +317,21 @@ texture = ExtResource("2_twpsu")
 physics_layer_0/collision_layer = 1
 sources/1 = SubResource("TileSetAtlasSource_lrqlo")
 
+[sub_resource type="Animation" id="Animation_jh1ax"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(224, 5)]
+}
+
 [sub_resource type="Animation" id="Animation_sqa0i"]
 resource_name = "move"
 length = 1.5
@@ -331,21 +347,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Vector2(224, 5), Vector2(336, 4)]
-}
-
-[sub_resource type="Animation" id="Animation_jh1ax"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(224, 5)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kycxp"]

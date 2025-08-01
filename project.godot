@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-BGM="res://scenes/bgm.tscn"
+Bgm="*res://scenes/bgm.tscn"
 
 [editor]
 
